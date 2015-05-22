@@ -5,7 +5,7 @@
 <!doctype html>
 <html>
 <head>
-<title>mysite</title>
+<title>mysite2</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="/mysite2/assets/css/main.css" rel="stylesheet" type="text/css">
 </head>

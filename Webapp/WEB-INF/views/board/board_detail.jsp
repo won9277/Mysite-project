@@ -6,78 +6,40 @@
 <!DOCTYPE html PUBLIC>
 <html>
 <head>
-<meta charset="UTF-8">
-<link href="/mysite2/assets/css/user.css" rel="stylesheet"
+<title>mysite</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link href="/mysite2/assets/css/board.css" rel="stylesheet"
 	type="text/css">
-<title>Insert title here</title>
-<style type="text/css">
-#content {
-	background-image: url("assets/images/sky.jpg");
-	height: 600px;
-	font-size: 15px;
-}
-
-#detailTable{
-padding: 0;
-margin-top: 30px;
-border: solid;
-width: 500px;
-height: 500px;
-margin: 0 auto;
-}
-#button {
-	font-family: 'Nanum Gothic';
-	float: right;
-	margin-right: 30px;
-	padding: 20px;
-}
-
-#contents {
-height: : 400px;
-}
-
-#list {
-text-align: center;
-}
-#title{
-height: 20px;
-font-size: 20px;
-}
-#top{
-height: 20px;
-text-align: left;
-}
-</style>
 </head>
 <body>
 	<div id="container">
 		<div id="header">
-			<jsp:include page="/WEB-INF/views/include/header.jsp" flush="false" />
+			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>
-		<!-- 등록순으로 보여지는 첫번째 탭 -->
-		<!-- Table -->
 		<div id="content">
-			<div id="button">
-				<a href="/mysite2/board?a=bmodifypage&no=${vo.no }">수정 |</a> <a
-					href="/mysite2/board?a=bdelete&no=${vo.no }"> 삭제</a>
-			</div>
-			<table id="detailTable">
-				<tr>
-					<th colspan="2" id="title">${vo.title }</th>
-				<tr>
-					<!-- 글 상세 페이지 -->
-					<div id="top">
-						<tr>
-							<td>${vo.member_name } </td>
-							<td>${vo.reg_date }</td>
-						</tr>
-					</div>
-						<tr>
-					<td colspan="2">${vo.content }</td></tr>
-					
-			</table>
-			<div id="list">
-				<a href="/mysite2/board?a=board_list">리스트로 돌아가기</a>
+			<div id="board" class="board-form">
+				<table class="tbl-ex">
+					<tr>
+						<th colspan="2">글보기</th>
+					</tr>
+					<tr>
+						<td class="label">제목</td>
+						<td>${boardVo2.title }</td>
+					</tr>
+					<tr>
+						<td class="label">내용</td>
+						<td>
+							<div class="view-content">${boardVo2.content }</div>
+						</td>
+					</tr>
+				</table>
+				<div class="bottom">
+					<a href="/mysite2/board/board_list">글목록</a>
+					<c:if test="${authMember.no==boardVo2.member_no}">
+						<a href="/mysite2/board/edit/${boardVo2.no }/${authMember.no}">글수정</a>
+					</c:if>
+				</div>
+
 			</div>
 		</div>
 		<div id="navigation">

@@ -6,88 +6,55 @@
 <!DOCTYPE html PUBLIC>
 <html>
 <head>
-<meta charset="UTF-8">
-<link href="/mysite2/assets/css/user.css" rel="stylesheet" type="text/css">
-<title>Board List</title>
-<style type="text/css">
-#content{
-background-image: url("assets/images/sky.jpg");
-height: 600px;
-
-}
-.BoardTable {
-	width: 100%;
-	border: 1px solid;
-	
-}
-
-.BoardTable tr th {
-	height: "20";
-	align: "center";
-	font-weight: bold;
-	width: 50px;
-	color: green;
-	text-align: center;
-}
-.BoardTable tr td {
-	font-weight: normal;
-}
-#title{
-width: 500px;
-}
-#writer, #date{
-width: 100px;
-}
-#writeBtn{
-float: right;
-}
-</style>
+<title>mysite</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link href="/mysite2/assets/css/board.css" rel="stylesheet"
+	type="text/css">
 </head>
 <body>
 	<div id="container">
 		<div id="header">
-			<jsp:include page="/WEB-INF/views/include/header.jsp" flush="false" />
+			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>
-		<!-- Table -->
 		<div id="content">
-		<form action="/mysite2/board" method="post">
-		<input type="hidden" name="a" value="insertBoardPage"> 
-		<div id="writeBtn">
-			<input type="submit" value="글쓰기" >
-			</div>
-			<table class="BoardTable">
-					<th></th>
-					<th id= "writer">글쓴이</th>
-					<th id="title">제목</th>
-					<th>댓글</th>
-					<th id="date">날짜</th>
-				</tr>
-				<c:forEach var="g" items="${list }">
-				<tr>
-					<td>${g.no }</td>
-					<td>${g.member_name } </td>
-					<td><a href="/mysite2/board?a=getboard&no=${g.no }">${g.title } </a></td>
-					<td>${g.view_cnt }</td>
-					<td>${g.reg_date }</td>
-				</tr>
-				</c:forEach>
-				<%-- <tr height="40" align="center">
-					<td>${b.no }</td>
-					<td>${b.name }</td>
-					<td><a href="">${b.title }</a></td>
-					<td>${b.comments_no}</td>
-					<td>${b.date.substring(0,10)}</td>
-				</tr> --%>
-			</table>
-			</form>
-			<%-- <div align="center">
+			<div id="board">
+				<form id="search_form" action="/mysite2/board" method="post">
+					<input type="text" id="kwd" name="kwd" value="">
+					<input type="submit" value="찾기">
+				</form>
+				<table class="tbl-ex">
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>글쓴이</th>
+						<th>조회수</th>
+						<th>작성일</th>
+						<th>&nbsp;</th>
+					</tr>
 					
-						<FONT size=2>${pageLink}</FONT><br/>
-						<form action="" id="frm1" method="post">
-							<input type="hidden" id="pageNo" name="pageNo" />
-						</form> 
-					</div>  --%>
-
+					<c:forEach items="${list }" var="vo">		
+					<tr>
+						<td>${vo.no}</td>
+						<td><a href="/mysite2/board/board_detail/${vo.no }">${vo.title }</a></td>
+						<td>${vo.member_name }</td>
+						<td>${vo.view_cnt}</td>
+						<td>${vo.reg_date }</td>
+						<td>
+						<c:if test="${authMember.no==vo.member_no}">
+							<a href="/mysite2/board/delete/${vo.no }" id="del">삭제</a>
+						</c:if>
+						
+						</td>
+					</tr>
+					</c:forEach>										
+				</table>
+				<div class="bottom">
+				<c:if test="${authMember.no!=null}">
+					<a href="/mysite2/board/board_write/" id="new-book">글쓰기</a>
+				</c:if>
+				</div>			
+							
+			</div>
 		</div>
 
 

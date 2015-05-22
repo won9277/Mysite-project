@@ -8,12 +8,12 @@
 		<c:when test="${param.type=='main' }">
 			<li class="selected" style="text-align: center;">${authMember.name
 				}님 로그인</li>
-			<li><a href="guestbook/list">방명록</a></li>
-			<li><a href="/mysite2/board?a=board_list">게시판</a></li>
+			<li><a href="/mysite2/guestbook/list">방명록</a></li>
+			<li><a href="/mysite2/board/board_list">게시판</a></li>
 		</c:when>
 		<c:otherwise>
-			<li><a href="member/guestbook">방명록</a></li>
-			<li><a href="">게시판</a></li>
+			<li><a href="/mysite2/guestbook/list">방명록</a></li>
+			<li><a href="/mysite2/board/board_list">게시판</a></li>
 		</c:otherwise>
 	</c:choose>
 </ul>

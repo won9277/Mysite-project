@@ -16,7 +16,7 @@
 				<form method="post" action="/mysite2/guestbook/delete">
 					<input type='hidden' name="no" value="${no}">
 					<label>비밀번호</label>
-					<input type="password" name="password">
+					<input type="password" name="pwd">
 					<input type="submit" value="확인">
 				</form>
 				<a href="/mysite2/guestbook/list">방명록 리스트</a>

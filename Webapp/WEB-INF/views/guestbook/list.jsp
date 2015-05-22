@@ -21,10 +21,10 @@
 					<table>
 						<tr>
 							<td>이름</td><td><input type="text" name="name"></td>
-							<td>비밀번호</td><td><input type="password" name="password"></td>
+							<td>비밀번호</td><td><input type="password" name="pwd"></td>
 						</tr>
 						<tr>
-							<td colspan=4><textarea name="message" id="content"></textarea></td>
+							<td colspan=4><textarea name="msg" cols=60 rows=5></textarea></td>
 						</tr>
 						<tr>
 							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
@@ -41,9 +41,9 @@
 								<td>${vo.regDate }</td>
 								<td><a href="/mysite2/guestbook/delete/${vo.no }">삭제</a></td>
 							</tr>
-							<tr>
+							<tr>	
 								<td colspan=4>
-									${fn:replace( vo.message, newLineChar, "<br>" ) }			
+									${fn:replace( vo.msg, newLineChar, "<br>" ) }			
 								</td>
 							</tr>
 						</table>

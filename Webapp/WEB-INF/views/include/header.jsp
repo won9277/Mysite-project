@@ -6,12 +6,11 @@
 	<ul>
 		<c:choose>
 			<c:when test="${empty authMember  }">
-				<li><a href="member/login">로그인</a></li>
-				<li><a href="member/join">회원가입</a></li>
+				<li><a href="/mysite2/member/login">로그인</a></li>
+				<li><a href="/mysite2/member/join">회원가입</a></li>
 			</c:when>	
 			<c:otherwise>
-				<li><a href="member/uinfo">회원정보수정</a><li>
-				<li><a href="member/logout">로그아웃</a><li>
+				<li><a href="/mysite2/member/logout">로그아웃</a><li>
 				<li>${authMember.name }님 안녕하세요 ^^;</li>
 			</c:otherwise>
 		</c:choose>

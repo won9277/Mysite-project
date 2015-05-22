@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="fn"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,28 +18,30 @@
 		</div>
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="/mysite2/board/insert">
-					<input type="hidden" name = "member_name" value="${authMember.name }">
-					<input type="hidden" name = "member_no" value="${authMember.no }">
+				<form class="board-form" method="post" action="/mysite2/board/edit">
+				<input type="hidden" name="no" value="${vo.no }">
+				<input type="hidden" name="member_no" value="${authMember.no }">
 					<table class="tbl-ex">
 						<tr>
-							<th colspan="2">글쓰기</th>
+							<th colspan="2">글수정</th>
 						</tr>
 						<tr>
 							<td class="label">제목</td>
-							<td><input type="text" name="title" value=""></td>
+							
+							<td><input type="text" name="title" value="${vo.title }"></td>
 						</tr>
 						<tr>
 							<td class="label">내용</td>
 							<td>
-								<textarea id="content" name="content"></textarea>
+								<textarea id="content" name="content">${vo.content }</textarea>
 							</td>
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="/mysite2/board">취소</a>
-						<input type="submit" value="등록">
+						<a href="/mysite2/board/board_detail/${vo.no }">취소</a>
+						<input type="submit" value="수정">
 					</div>
+				
 				</form>				
 			</div>
 		</div>

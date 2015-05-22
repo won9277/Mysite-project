@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sds.icto.mysite.repository.MemberVo;
+import com.sds.icto.mysite.domain.MemberVo;
+import com.sds.icto.mysite.repository.MemberDao;
 import com.sds.icto.mysite.service.MemberService;
 
 @Controller
@@ -16,7 +17,7 @@ import com.sds.icto.mysite.service.MemberService;
 public class MemberController {
 
 	@Autowired
-	MemberService memberService;
+	MemberDao memberDao;
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String joinForm() {
@@ -25,7 +26,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(@ModelAttribute MemberVo vo) {
-		memberService.joinUser(vo);
+		memberDao.insert(vo);
 		return "redirect:/index";
 	}
 
@@ -36,9 +37,10 @@ public class MemberController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute MemberVo vo, HttpSession session) {
-		MemberVo memberVo = memberService.authUser(vo);
+		MemberVo memberVo = null;
+		memberVo = memberDao.get(vo);
 		if (memberVo == null) {
-			return "redirect:/member/login?result=fail";
+			return "redirect:member/login?result=fail";
 		}
 
 		session.setAttribute("authMember", memberVo);

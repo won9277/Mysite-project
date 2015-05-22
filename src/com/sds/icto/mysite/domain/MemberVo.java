@@ -1,4 +1,4 @@
-package com.sds.icto.mysite.repository;
+package com.sds.icto.mysite.domain;
 
 public class MemberVo {
 	private Long no;
